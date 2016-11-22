@@ -136,11 +136,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    DetailViewController *dvc = segue.destinationViewController;
-    UICollectionViewCell *cell = (UICollectionViewCell *)sender;
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    
-    dvc.photoModel = self.photoArray[indexPath.item];
+    if ([segue.identifier isEqualToString:@"DetailVCSegue"]) {
+        DetailViewController *dvc = segue.destinationViewController;
+        UICollectionViewCell *cell = (UICollectionViewCell *)sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        
+        dvc.photoModel = self.photoArray[indexPath.item];
+    }
     
 }
 

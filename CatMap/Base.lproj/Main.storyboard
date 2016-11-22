@@ -88,6 +88,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="O9J-Ds-uu9" id="jVg-I9-M3f"/>
+                        <outlet property="searchButton" destination="1ga-es-obJ" id="Eoa-Qk-UdP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,8 +106,39 @@
                     <view key="view" contentMode="scaleToFill" id="meW-0Q-ghn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q3p-mL-ZTb">
+                                <rect key="frame" x="10" y="74" width="355" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5k-83-Qgb">
+                                <rect key="frame" x="163" y="114" width="51" height="31"/>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K5k-83-Qgb" firstAttribute="top" secondItem="q3p-mL-ZTb" secondAttribute="bottom" constant="10" id="51r-js-Qu5"/>
+                            <constraint firstItem="K5k-83-Qgb" firstAttribute="centerX" secondItem="meW-0Q-ghn" secondAttribute="centerX" id="8er-Vi-LOD"/>
+                            <constraint firstAttribute="trailing" secondItem="q3p-mL-ZTb" secondAttribute="trailing" constant="10" id="JU7-YC-xcG"/>
+                            <constraint firstItem="q3p-mL-ZTb" firstAttribute="top" secondItem="wA0-s7-jAU" secondAttribute="bottom" constant="10" id="KSh-C0-c29"/>
+                            <constraint firstItem="q3p-mL-ZTb" firstAttribute="leading" secondItem="meW-0Q-ghn" secondAttribute="leading" constant="10" id="pI2-ec-Hu2"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="4LS-tc-n7j">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IBB-CY-yC7">
+                            <connections>
+                                <action selector="saveSearch:" destination="AsW-dy-6wu" id="AVo-LU-fU2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="getUserLocationSwitch" destination="K5k-83-Qgb" id="71M-eI-rh1"/>
+                        <outlet property="searchTextField" destination="q3p-mL-ZTb" id="Bg2-NY-xpj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mME-LC-i6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
