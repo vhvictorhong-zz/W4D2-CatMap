@@ -79,7 +79,13 @@
                             <constraint firstAttribute="trailing" secondItem="O9J-Ds-uu9" secondAttribute="trailing" id="u3l-XD-Ema"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xTb-TP-RQ3"/>
+                    <navigationItem key="navigationItem" id="xTb-TP-RQ3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="1ga-es-obJ">
+                            <connections>
+                                <segue destination="AsW-dy-6wu" kind="show" id="LjI-9h-oRJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="O9J-Ds-uu9" id="jVg-I9-M3f"/>
                     </connections>
@@ -88,10 +94,28 @@
             </objects>
             <point key="canvasLocation" x="1076" y="98.50074962518741"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
+        <scene sceneID="XYp-WW-siC">
+            <objects>
+                <viewController id="AsW-dy-6wu" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wA0-s7-jAU"/>
+                        <viewControllerLayoutGuide type="bottom" id="WA6-KD-KBd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="meW-0Q-ghn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mME-LC-i6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1921" y="-249"/>
+        </scene>
+        <!--Detail View Controller-->
         <scene sceneID="E5x-SI-uoJ">
             <objects>
-                <viewController id="dwC-zS-8b9" sceneMemberID="viewController">
+                <viewController id="dwC-zS-8b9" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qZU-P0-ewR"/>
                         <viewControllerLayoutGuide type="bottom" id="kyt-j1-Udg"/>
@@ -101,7 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FtR-Mk-51j">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,10 +136,13 @@
                             <constraint firstAttribute="trailing" secondItem="FtR-Mk-51j" secondAttribute="trailing" id="gCF-EX-J7u"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="FtR-Mk-51j" id="SXs-D7-auC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFZ-1p-Oab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816.8" y="98.50074962518741"/>
+            <point key="canvasLocation" x="1921" y="475"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1UI-sB-Hm7">

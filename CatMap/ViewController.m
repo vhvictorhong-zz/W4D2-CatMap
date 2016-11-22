@@ -9,9 +9,11 @@
 #import "ViewController.h"
 #import "PhotoModel.h"
 #import "CustomCollectionViewCell.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray <PhotoModel *>*photoArray;
 
@@ -127,6 +129,18 @@
     cell.titleLabel.text = photoModel.title;
     
     return cell;
+    
+}
+
+#pragma mark - PrepareSegue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    DetailViewController *dvc = segue.destinationViewController;
+    UICollectionViewCell *cell = (UICollectionViewCell *)sender;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    
+    dvc.photoModel = self.photoArray[indexPath.item];
     
 }
 
