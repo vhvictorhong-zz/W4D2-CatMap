@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "NetworkQuery.h"
 @import CoreLocation;
 
 @interface SearchViewController () <CLLocationManagerDelegate>
@@ -65,36 +66,27 @@
     
     if (self.getUserLocation) {
         
-        components.scheme = @"https";
-        components.host = @"api.flickr.com";
-        components.path = @"/services/rest/";
         NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-        NSURLQueryItem *apiKeyItem = [NSURLQueryItem queryItemWithName:@"api_key" value:@"8378e436b57070a4e9900a64d8fa6562"];
         NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
-        NSURLQueryItem *extraItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-        NSURLQueryItem *formatItem = [NSURLQueryItem queryItemWithName:@"format" value:@"json"];
-        NSURLQueryItem *noJSONCallBackItem = [NSURLQueryItem queryItemWithName:@"nojsoncallback" value:@"1"];
-        NSURLQueryItem *perPageItem = [NSURLQueryItem queryItemWithName:@"per_page" value:@"50"];
+        NSURLQueryItem *extrasItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
         NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:self.searchTextField.text];
         NSURLQueryItem *latitudeItem = [NSURLQueryItem queryItemWithName:@"lat" value:self.latitude];
         NSURLQueryItem *longitudeItem = [NSURLQueryItem queryItemWithName:@"lon" value:self.longitude];
         
-        components.queryItems = @[methodItem, apiKeyItem, hasGeoItem, extraItem, formatItem, noJSONCallBackItem, perPageItem, tagItem, latitudeItem, longitudeItem];
+        NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extrasItem, tagItem, latitudeItem, longitudeItem, nil];
+        
+        components = [NetworkQuery createURLComponents:queryMutableArray];
 
     } else {
         
-        components.scheme = @"https";
-        components.host = @"api.flickr.com";
-        components.path = @"/services/rest/";
         NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-        NSURLQueryItem *apiKeyItem = [NSURLQueryItem queryItemWithName:@"api_key" value:@"8378e436b57070a4e9900a64d8fa6562"];
         NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
-        NSURLQueryItem *extraItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-        NSURLQueryItem *formatItem = [NSURLQueryItem queryItemWithName:@"format" value:@"json"];
-        NSURLQueryItem *noJSONCallBackItem = [NSURLQueryItem queryItemWithName:@"nojsoncallback" value:@"1"];
-        NSURLQueryItem *perPageItem = [NSURLQueryItem queryItemWithName:@"per_page" value:@"50"];
+        NSURLQueryItem *extrasItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
         NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:self.searchTextField.text];
-        components.queryItems = @[methodItem, apiKeyItem, hasGeoItem, extraItem, formatItem, noJSONCallBackItem, perPageItem, tagItem];
+        
+        NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extrasItem, tagItem, nil];
+        
+        components = [NetworkQuery createURLComponents:queryMutableArray];
         
     }
     

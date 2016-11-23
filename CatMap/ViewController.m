@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "DetailViewController.h"
-#import "SearchViewController.h"
 #import "PhotoModel.h"
+#import "NetworkQuery.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -28,19 +28,14 @@
     
     self.photoArray = [[NSMutableArray alloc] init];
     
-    NSURLComponents *components = [[NSURLComponents alloc] init];
-    components.scheme = @"https";
-    components.host = @"api.flickr.com";
-    components.path = @"/services/rest/";
     NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-    NSURLQueryItem *apiKeyItem = [NSURLQueryItem queryItemWithName:@"api_key" value:@"8378e436b57070a4e9900a64d8fa6562"];
     NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
     NSURLQueryItem *extraItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-    NSURLQueryItem *formatItem = [NSURLQueryItem queryItemWithName:@"format" value:@"json"];
-    NSURLQueryItem *noJSONCallBackItem = [NSURLQueryItem queryItemWithName:@"nojsoncallback" value:@"1"];
-    NSURLQueryItem *perPageItem = [NSURLQueryItem queryItemWithName:@"per_page" value:@"50"];
     NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:@"cat"];
-    components.queryItems = @[methodItem, apiKeyItem, hasGeoItem, extraItem, formatItem, noJSONCallBackItem, perPageItem, tagItem];
+    
+    NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extraItem, tagItem, nil];
+    
+    NSURLComponents *components = [NetworkQuery createURLComponents:queryMutableArray];
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
     

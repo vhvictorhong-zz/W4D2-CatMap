@@ -7,6 +7,7 @@
 //
 
 #import "PhotoModel.h"
+#import "NetworkQuery.h"
 
 @implementation PhotoModel
 
@@ -33,16 +34,12 @@
 
 -(void)getLocationCoordinate {
     
-    NSURLComponents *components = [[NSURLComponents alloc] init];
-    components.scheme = @"https";
-    components.host = @"api.flickr.com";
-    components.path = @"/services/rest/";
     NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.geo.getLocation"];
-    NSURLQueryItem *apiKeyItem = [NSURLQueryItem queryItemWithName:@"api_key" value:@"8378e436b57070a4e9900a64d8fa6562"];
     NSURLQueryItem *photoIDItem = [NSURLQueryItem queryItemWithName:@"photo_id" value:self.photoID];
-    NSURLQueryItem *formatItem = [NSURLQueryItem queryItemWithName:@"format" value:@"json"];
-    NSURLQueryItem *noJSONCallBack = [NSURLQueryItem queryItemWithName:@"nojsoncallback" value:@"1"];
-    components.queryItems = @[methodItem, apiKeyItem, photoIDItem, formatItem, noJSONCallBack];
+    
+    NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, photoIDItem, nil];
+    
+    NSURLComponents *components = [NetworkQuery createURLComponents:queryMutableArray];
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
     

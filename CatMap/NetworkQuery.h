@@ -10,4 +10,6 @@
 
 @interface NetworkQuery : NSObject
 
++(NSURLComponents *)createURLComponents:(NSMutableArray *)queryItems;
+
 @end
