@@ -10,6 +10,8 @@
 
 @interface NetworkQuery : NSObject
 
-+(NSURLComponents *)createURLComponents:(NSMutableArray *)queryItems;
++(NSURLComponents *)createURLSearch:(NSString *)searchKey;
++(NSURLComponents *)createURLSearchWithCoordinate:(NSString *)searchKey latitude:(NSString *)latitude longitude:(NSString *)longitude;
++(NSURLComponents *)createURLGetLocation:(NSString *)photoID;
 
 @end

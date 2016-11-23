@@ -66,27 +66,11 @@
     
     if (self.getUserLocation) {
         
-        NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-        NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
-        NSURLQueryItem *extrasItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-        NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:self.searchTextField.text];
-        NSURLQueryItem *latitudeItem = [NSURLQueryItem queryItemWithName:@"lat" value:self.latitude];
-        NSURLQueryItem *longitudeItem = [NSURLQueryItem queryItemWithName:@"lon" value:self.longitude];
-        
-        NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extrasItem, tagItem, latitudeItem, longitudeItem, nil];
-        
-        components = [NetworkQuery createURLComponents:queryMutableArray];
+        components = [NetworkQuery createURLSearchWithCoordinate:self.searchTextField.text latitude:self.latitude longitude:self.longitude];
 
     } else {
         
-        NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-        NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
-        NSURLQueryItem *extrasItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-        NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:self.searchTextField.text];
-        
-        NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extrasItem, tagItem, nil];
-        
-        components = [NetworkQuery createURLComponents:queryMutableArray];
+        components = [NetworkQuery createURLSearch:self.searchTextField.text];
         
     }
     

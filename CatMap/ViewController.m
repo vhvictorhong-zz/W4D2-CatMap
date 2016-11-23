@@ -27,15 +27,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.photoArray = [[NSMutableArray alloc] init];
-    
-    NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.search"];
-    NSURLQueryItem *hasGeoItem = [NSURLQueryItem queryItemWithName:@"has_geo" value:@"1"];
-    NSURLQueryItem *extraItem = [NSURLQueryItem queryItemWithName:@"extras" value:@"url_m"];
-    NSURLQueryItem *tagItem = [NSURLQueryItem queryItemWithName:@"tags" value:@"cat"];
-    
-    NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, hasGeoItem, extraItem, tagItem, nil];
-    
-    NSURLComponents *components = [NetworkQuery createURLComponents:queryMutableArray];
+
+    NSURLComponents *components = [NetworkQuery createURLSearch:@"cat"];
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
     

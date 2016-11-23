@@ -34,12 +34,7 @@
 
 -(void)getLocationCoordinate {
     
-    NSURLQueryItem *methodItem = [NSURLQueryItem queryItemWithName:@"method" value:@"flickr.photos.geo.getLocation"];
-    NSURLQueryItem *photoIDItem = [NSURLQueryItem queryItemWithName:@"photo_id" value:self.photoID];
-    
-    NSMutableArray *queryMutableArray = [NSMutableArray arrayWithObjects:methodItem, photoIDItem, nil];
-    
-    NSURLComponents *components = [NetworkQuery createURLComponents:queryMutableArray];
+    NSURLComponents *components = [NetworkQuery createURLGetLocation:self.photoID];
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
     
