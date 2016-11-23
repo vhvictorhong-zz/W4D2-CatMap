@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" id="xTb-TP-RQ3">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="1ga-es-obJ">
                             <connections>
-                                <segue destination="AsW-dy-6wu" kind="show" id="LjI-9h-oRJ"/>
+                                <segue destination="AsW-dy-6wu" kind="show" identifier="SearchVCSegue" id="LjI-9h-oRJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

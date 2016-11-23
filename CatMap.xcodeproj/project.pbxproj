@@ -21,6 +21,7 @@
 		2B1087C81DE4D19F00652D19 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087C71DE4D19F00652D19 /* DetailViewController.m */; };
 		2B1087CB1DE4DA8300652D19 /* BasicAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */; };
 		2B1087CE1DE4DC9200652D19 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087CD1DE4DC9200652D19 /* SearchViewController.m */; };
+		2B1087D41DE517D600652D19 /* NetworkQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087D31DE517D600652D19 /* NetworkQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicAnnotation.m; sourceTree = "<group>"; };
 		2B1087CC1DE4DC9200652D19 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2B1087CD1DE4DC9200652D19 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		2B1087D21DE517D600652D19 /* NetworkQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkQuery.h; sourceTree = "<group>"; };
+		2B1087D31DE517D600652D19 /* NetworkQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				2B1087C41DE4C63000652D19 /* CustomCollectionViewCell.m */,
 				2B1087C91DE4DA8300652D19 /* BasicAnnotation.h */,
 				2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */,
+				2B1087D21DE517D600652D19 /* NetworkQuery.h */,
+				2B1087D31DE517D600652D19 /* NetworkQuery.m */,
 				2B1087931DE49C8F00652D19 /* Main.storyboard */,
 				2B1087961DE49C8F00652D19 /* Assets.xcassets */,
 				2B1087981DE49C8F00652D19 /* LaunchScreen.storyboard */,
@@ -317,6 +322,7 @@
 				2B10878C1DE49C8F00652D19 /* main.m in Sources */,
 				2B1087C51DE4C63000652D19 /* CustomCollectionViewCell.m in Sources */,
 				2B1087CE1DE4DC9200652D19 /* SearchViewController.m in Sources */,
+				2B1087D41DE517D600652D19 /* NetworkQuery.m in Sources */,
 				2B1087C81DE4D19F00652D19 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +555,7 @@
 				2B1087B61DE49C8F00652D19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B1087B71DE49C8F00652D19 /* Build configuration list for PBXNativeTarget "CatMapTests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +564,7 @@
 				2B1087B91DE49C8F00652D19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B1087BA1DE49C8F00652D19 /* Build configuration list for PBXNativeTarget "CatMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -565,6 +573,7 @@
 				2B1087BC1DE49C8F00652D19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

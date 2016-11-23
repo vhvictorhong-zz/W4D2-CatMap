@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *getUserLocationSwitch;
 @property (strong, nonatomic) CLLocationManager* manager;
 
+@property BOOL getUserLocation;
 @property NSString *latitude;
 @property NSString *longitude;
 
@@ -24,20 +25,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.manager = [CLLocationManager new];
+    self.getUserLocation = YES;
     
     self.manager.delegate = self;
     [self.manager requestAlwaysAuthorization];
+    //[self.manager startUpdatingLocation];
     
 }
 
 - (IBAction)saveSearch:(UIBarButtonItem *)sender {
     
-    
-    NSURLComponents *components = [[NSURLComponents alloc] init];
+    [self.manager requestLocation];
     
     if (self.getUserLocationSwitch.on) {
         
-        [self.manager requestLocation];
+        self.getUserLocation = YES;
+        
+    } else {
+        
+        self.getUserLocation = NO;
+
+    }
+    
+}
+
+#pragma mark - CLLocation Manager Delegate
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    CLLocation *location = [locations lastObject];
+    
+    self.latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    NSLog(@"%@", self.latitude);
+    NSLog(@"%@", self.longitude);
+    
+    NSURLComponents *components = [[NSURLComponents alloc] init];
+    
+    if (self.getUserLocation) {
         
         components.scheme = @"https";
         components.host = @"api.flickr.com";
@@ -54,7 +80,7 @@
         NSURLQueryItem *longitudeItem = [NSURLQueryItem queryItemWithName:@"lon" value:self.longitude];
         
         components.queryItems = @[methodItem, apiKeyItem, hasGeoItem, extraItem, formatItem, noJSONCallBackItem, perPageItem, tagItem, latitudeItem, longitudeItem];
-        
+
     } else {
         
         components.scheme = @"https";
@@ -81,7 +107,7 @@
         
         if (error) {
             
-            //Handler the error
+            //Handle the error
             NSLog(@"error: %@", error.localizedDescription);
             return;
         }
@@ -105,7 +131,6 @@
             NSString *photoID = photo[@"id"];
             NSString *url_m = photo[@"url_m"];
             
-//            [self.photoArray addObject:[[PhotoModel alloc] initWithTitle:title photoID:photoID url:url_m]];
             //            NSLog(@"title: %@", title);
             //            NSLog(@"photoID: %@", photoID);
             //            NSLog(@"url_m: %@", url_m);
@@ -116,11 +141,11 @@
             
             //This will run on the main queue
             
-//            for (PhotoModel *photo in self.photoArray) {
-//                [photo getLocationCoordinate];
-//            }
-//            
-//            [self.collectionView reloadData];
+            //            for (PhotoModel *photo in self.photoArray) {
+            //                [photo getLocationCoordinate];
+            //            }
+            //
+            //            [self.collectionView reloadData];
             
         }];
         
@@ -131,14 +156,9 @@
     
 }
 
-#pragma mark - CLLocation Manager Delegate
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     
-    CLLocation *location = [locations lastObject];
-    
-    self.latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-    self.longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    NSLog(@"error: %@", error);
     
 }
 

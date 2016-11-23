@@ -1,16 +1,13 @@
 //
-//  ViewController.h
+//  NetworkQuery.h
 //  CatMap
 //
 //  Created by Victor Hong on 22/11/2016.
 //  Copyright © 2016 Victor Hong. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController
-
-
+@interface NetworkQuery : NSObject
 
 @end
-

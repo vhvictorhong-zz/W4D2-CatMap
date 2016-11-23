@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "PhotoModel.h"
 #import "CustomCollectionViewCell.h"
 #import "DetailViewController.h"
+#import "SearchViewController.h"
+#import "PhotoModel.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -50,7 +51,7 @@
         
         if (error) {
             
-            //Handler the error
+            //Handle the error
             NSLog(@"error: %@", error.localizedDescription);
             return;
         }
@@ -100,6 +101,12 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self.collectionView reloadData];
+    
+}
+
 #pragma mark - UICollectionViewDataSource
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -137,11 +144,13 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"DetailVCSegue"]) {
+        
         DetailViewController *dvc = segue.destinationViewController;
         UICollectionViewCell *cell = (UICollectionViewCell *)sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         
         dvc.photoModel = self.photoArray[indexPath.item];
+        
     }
     
 }
