@@ -11,12 +11,14 @@
 #import "DetailViewController.h"
 #import "PhotoModel.h"
 #import "NetworkQuery.h"
+#import "NetworkRequest.h"
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, DataProtocol>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray <PhotoModel *>*photoArray;
+@property NetworkRequest *networkRequest;
 
 @end
 
@@ -27,66 +29,25 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.photoArray = [[NSMutableArray alloc] init];
+    
+    self.networkRequest = [[NetworkRequest alloc] init];
+    
+    self.networkRequest.photoDelegate = self;
 
-    NSURLComponents *components = [NetworkQuery createURLSearch:@"cat"];
+    [self.networkRequest getPhotos:@"cat"];
     
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (error) {
-            
-            //Handle the error
-            NSLog(@"error: %@", error.localizedDescription);
-            return;
-        }
-        
-        NSError *jsonError = nil;
-        NSMutableDictionary *photoSearch = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
-        if (jsonError) {
-            
-            //Handle the error
-            NSLog(@"jsonError: %@", jsonError.localizedDescription);
-            return;
-        }
-        
-        NSDictionary *photosDictionary = photoSearch[@"photos"];
-        
-        //If we reach this point, we have successfully retrieved the JSON from the API
-        for (NSDictionary *photo in photosDictionary[@"photo"]) {
-            
-            NSString *title = photo[@"title"];
-            NSString *photoID = photo[@"id"];
-            NSString *url_m = photo[@"url_m"];
-            
-            [self.photoArray addObject:[[PhotoModel alloc] initWithTitle:title photoID:photoID url:url_m]];
-//            NSLog(@"title: %@", title);
-//            NSLog(@"photoID: %@", photoID);
-//            NSLog(@"url_m: %@", url_m);
-            
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            //This will run on the main queue
-            
-            for (PhotoModel *photo in self.photoArray) {
-                [photo getLocationCoordinate];
-            }
-            
-            [self.collectionView reloadData];
-            
-        }];
-        
-        
-    }];
-    
-    [dataTask resume];
+}
 
+-(void)gotData:(NSMutableArray<PhotoModel *> *)photoModelArray {
+    
+    self.photoArray = photoModelArray;
+    
+    for (PhotoModel *photo in self.photoArray) {
+        [photo getLocationCoordinate];
+    }
+    
+    [self.collectionView reloadData];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

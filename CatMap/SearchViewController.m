@@ -8,12 +8,14 @@
 
 #import "SearchViewController.h"
 #import "NetworkQuery.h"
+#import "NetworkRequest.h"
 @import CoreLocation;
 
-@interface SearchViewController () <CLLocationManagerDelegate>
+@interface SearchViewController () <CLLocationManagerDelegate, DataProtocol>
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *getUserLocationSwitch;
 @property (strong, nonatomic) CLLocationManager* manager;
+@property NetworkRequest *networkRequest;
 
 @property BOOL getUserLocation;
 @property NSString *latitude;
@@ -32,6 +34,9 @@
     self.manager.delegate = self;
     [self.manager requestAlwaysAuthorization];
     //[self.manager startUpdatingLocation];
+    
+    self.networkRequest = [[NetworkRequest alloc] init];
+    self.networkRequest.photoDelegate = self;
     
 }
 
@@ -62,74 +67,7 @@
     NSLog(@"%@", self.latitude);
     NSLog(@"%@", self.longitude);
     
-    NSURLComponents *components = [[NSURLComponents alloc] init];
-    
-    if (self.getUserLocation) {
-        
-        components = [NetworkQuery createURLSearchWithCoordinate:self.searchTextField.text latitude:self.latitude longitude:self.longitude];
-
-    } else {
-        
-        components = [NetworkQuery createURLSearch:self.searchTextField.text];
-        
-    }
-    
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (error) {
-            
-            //Handle the error
-            NSLog(@"error: %@", error.localizedDescription);
-            return;
-        }
-        
-        NSError *jsonError = nil;
-        NSMutableDictionary *photoSearch = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
-        if (jsonError) {
-            
-            //Handle the error
-            NSLog(@"jsonError: %@", jsonError.localizedDescription);
-            return;
-        }
-        
-        NSDictionary *photosDictionary = photoSearch[@"photos"];
-        
-        //If we reach this point, we have successfully retrieved the JSON from the API
-        for (NSDictionary *photo in photosDictionary[@"photo"]) {
-            
-            NSString *title = photo[@"title"];
-            NSString *photoID = photo[@"id"];
-            NSString *url_m = photo[@"url_m"];
-            
-            //            NSLog(@"title: %@", title);
-            //            NSLog(@"photoID: %@", photoID);
-            //            NSLog(@"url_m: %@", url_m);
-            
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            //This will run on the main queue
-            
-            //            for (PhotoModel *photo in self.photoArray) {
-            //                [photo getLocationCoordinate];
-            //            }
-            //
-            //            [self.collectionView reloadData];
-            
-        }];
-        
-        
-    }];
-    
-    [dataTask resume];
-    
+    [self.networkRequest getPhotos:self.searchTextField.text];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -138,6 +76,11 @@
     
 }
 
+-(void)gotData:(NSMutableArray<PhotoModel *> *)photoModelArray {
+    
+    
+    
+}
 /*
 #pragma mark - Navigation
 

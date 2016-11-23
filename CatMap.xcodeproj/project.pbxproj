@@ -22,6 +22,8 @@
 		2B1087CB1DE4DA8300652D19 /* BasicAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */; };
 		2B1087CE1DE4DC9200652D19 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087CD1DE4DC9200652D19 /* SearchViewController.m */; };
 		2B1087D41DE517D600652D19 /* NetworkQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087D31DE517D600652D19 /* NetworkQuery.m */; };
+		2B1089781DE63F0C00652D19 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1089771DE63F0C00652D19 /* NetworkRequest.m */; };
+		2B10897E1DE64C1F00652D19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B10897D1DE64C1F00652D19 /* LocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		2B1087CD1DE4DC9200652D19 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		2B1087D21DE517D600652D19 /* NetworkQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkQuery.h; sourceTree = "<group>"; };
 		2B1087D31DE517D600652D19 /* NetworkQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkQuery.m; sourceTree = "<group>"; };
+		2B1089761DE63F0C00652D19 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
+		2B1089771DE63F0C00652D19 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
+		2B10897C1DE64C1F00652D19 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		2B10897D1DE64C1F00652D19 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,10 @@
 				2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */,
 				2B1087D21DE517D600652D19 /* NetworkQuery.h */,
 				2B1087D31DE517D600652D19 /* NetworkQuery.m */,
+				2B1089761DE63F0C00652D19 /* NetworkRequest.h */,
+				2B1089771DE63F0C00652D19 /* NetworkRequest.m */,
+				2B10897C1DE64C1F00652D19 /* LocationManager.h */,
+				2B10897D1DE64C1F00652D19 /* LocationManager.m */,
 				2B1087931DE49C8F00652D19 /* Main.storyboard */,
 				2B1087961DE49C8F00652D19 /* Assets.xcassets */,
 				2B1087981DE49C8F00652D19 /* LaunchScreen.storyboard */,
@@ -318,9 +328,11 @@
 				2B1087921DE49C8F00652D19 /* ViewController.m in Sources */,
 				2B10878F1DE49C8F00652D19 /* AppDelegate.m in Sources */,
 				2B1087BF1DE4A62600652D19 /* PhotoModel.m in Sources */,
+				2B10897E1DE64C1F00652D19 /* LocationManager.m in Sources */,
 				2B1087CB1DE4DA8300652D19 /* BasicAnnotation.m in Sources */,
 				2B10878C1DE49C8F00652D19 /* main.m in Sources */,
 				2B1087C51DE4C63000652D19 /* CustomCollectionViewCell.m in Sources */,
+				2B1089781DE63F0C00652D19 /* NetworkRequest.m in Sources */,
 				2B1087CE1DE4DC9200652D19 /* SearchViewController.m in Sources */,
 				2B1087D41DE517D600652D19 /* NetworkQuery.m in Sources */,
 				2B1087C81DE4D19F00652D19 /* DetailViewController.m in Sources */,

@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocationManager.h"
 @import MapKit;
 
-@interface PhotoModel : NSObject <MKAnnotation>
+@interface PhotoModel : NSObject <MKAnnotation, LocationDataProtocol>
 
 @property (nonatomic, readonly, copy, nullable) NSString *title;
 @property (nonatomic, nonnull)NSString *photoID;
 @property (nonatomic, nonnull)NSString *url;
 @property (nonatomic, nonnull)UIImage *image;
-@property double latitude;
-@property double longitude;
+//@property double latitude;
+//@property double longitude;
 
 @property(nonatomic) CLLocationCoordinate2D coordinate;
 
