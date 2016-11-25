@@ -1,20 +1,18 @@
 //
-//  NetworkRequest.m
+//  LocationManager.m
 //  CatMap
 //
 //  Created by Victor Hong on 23/11/2016.
 //  Copyright © 2016 Victor Hong. All rights reserved.
 //
 
-#import "NetworkRequest.h"
-#import "NetworkQuery.h"
+#import "LocationManager.h"
 
-@implementation NetworkRequest
+@implementation LocationManager
 
--(void)getPhotos:(NSString *)search {
+-(void)getLocation:(NSString *)photoID {
     
-    NSMutableArray *photoArray = [[NSMutableArray alloc] init];
-    NSURLComponents *components = [NetworkQuery createURLSearch:search];
+    NSURLComponents *components = [NetworkQuery createURLGetLocation:photoID];
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:components.URL];
     
@@ -25,13 +23,13 @@
         
         if (error) {
             
-            //Handle the error
+            //Handler the error
             NSLog(@"error: %@", error.localizedDescription);
             return;
         }
         
         NSError *jsonError = nil;
-        NSMutableDictionary *photoSearch = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        NSMutableDictionary *photosDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         
         if (jsonError) {
             
@@ -40,26 +38,19 @@
             return;
         }
         
-        NSDictionary *photosDictionary = photoSearch[@"photos"];
+        NSDictionary *photoDictionary = photosDictionary[@"photo"];
+        NSDictionary *locationDictionary = photoDictionary[@"location"];
         
         //If we reach this point, we have successfully retrieved the JSON from the API
-        for (NSDictionary *photo in photosDictionary[@"photo"]) {
-            
-            NSString *title = photo[@"title"];
-            NSString *photoID = photo[@"id"];
-            NSString *url = photo[@"url_sq"];
-            
-            [photoArray addObject:[[PhotoModel alloc] initWithTitle:title photoID:photoID url:url]];
-            //            NSLog(@"title: %@", title);
-            //            NSLog(@"photoID: %@", photoID);
-            //            NSLog(@"url_m: %@", url_m);
-            
-        }
+        
+        double latitude = [locationDictionary[@"latitude"] doubleValue];
+        double longitude = [locationDictionary[@"longitude"] doubleValue];
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
             //This will run on the main queue
-            [self.photoDelegate gotData:photoArray];
+            
+            [self.locationDelegate gotLocation:latitude longitude:longitude];
             
         }];
         

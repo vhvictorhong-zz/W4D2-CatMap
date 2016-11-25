@@ -23,7 +23,7 @@
     view.enabled = YES;
     view.canShowCallout = YES;
     view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    view.image = [UIImage imageNamed:@"park"];
+    view.image = self.image;
     
     return view;
     

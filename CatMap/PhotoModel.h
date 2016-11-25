@@ -16,6 +16,7 @@
 @property (nonatomic, nonnull)NSString *photoID;
 @property (nonatomic, nonnull)NSString *url;
 @property (nonatomic, nonnull)UIImage *image;
+
 //@property double latitude;
 //@property double longitude;
 

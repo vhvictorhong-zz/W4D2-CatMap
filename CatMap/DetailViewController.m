@@ -10,7 +10,8 @@
 #import "BasicAnnotation.h"
 @import MapKit;
 
-@interface DetailViewController ()
+@interface DetailViewController () <MKMapViewDelegate>
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
@@ -28,8 +29,33 @@
     BasicAnnotation *annotation = [[BasicAnnotation alloc] init];
     annotation.title = self.photoModel.title;
     annotation.coordinate = self.photoModel.coordinate;
+    annotation.image = self.photoModel.image;
     
     [self.mapView addAnnotation:annotation];
+    
+}
+
+-(MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    if ([annotation isKindOfClass:[BasicAnnotation class]]) {
+        
+        BasicAnnotation* basicAnnotation = (BasicAnnotation*) annotation;
+        MKAnnotationView* view = [mapView dequeueReusableAnnotationViewWithIdentifier:@"annotation"];
+        
+        if (!view) {
+            view = [basicAnnotation createAnnotationView];
+        }
+        else {
+            view.annotation = annotation;
+        }
+        
+        return view;
+        
+    } else {
+        
+        return nil;
+        
+    }
     
 }
 

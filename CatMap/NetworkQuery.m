@@ -34,7 +34,7 @@ static NSString * const hasGeoKey = @"has_geo";
 static NSString * const hasGeoValue = @"1";
 
 static NSString * const extrasKey = @"extras";
-static NSString * const extrasValue = @"url_m";
+static NSString * const extrasValue = @"url_sq";
 
 static NSString * const photoIDKey = @"photo_id";
 

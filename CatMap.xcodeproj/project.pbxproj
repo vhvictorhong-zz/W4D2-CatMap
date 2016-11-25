@@ -24,6 +24,7 @@
 		2B1087D41DE517D600652D19 /* NetworkQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1087D31DE517D600652D19 /* NetworkQuery.m */; };
 		2B1089781DE63F0C00652D19 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1089771DE63F0C00652D19 /* NetworkRequest.m */; };
 		2B10897E1DE64C1F00652D19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B10897D1DE64C1F00652D19 /* LocationManager.m */; };
+		2B85BDAB1DE8A28900F5F4C5 /* PhotoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B85BDA91DE8A28900F5F4C5 /* PhotoModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		2B1089771DE63F0C00652D19 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
 		2B10897C1DE64C1F00652D19 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		2B10897D1DE64C1F00652D19 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		2B85BDAA1DE8A28900F5F4C5 /* PhotoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,30 +131,13 @@
 		2B1087891DE49C8F00652D19 /* CatMap */ = {
 			isa = PBXGroup;
 			children = (
-				2B10878D1DE49C8F00652D19 /* AppDelegate.h */,
-				2B10878E1DE49C8F00652D19 /* AppDelegate.m */,
-				2B1087901DE49C8F00652D19 /* ViewController.h */,
-				2B1087911DE49C8F00652D19 /* ViewController.m */,
-				2B1087C61DE4D19F00652D19 /* DetailViewController.h */,
-				2B1087C71DE4D19F00652D19 /* DetailViewController.m */,
-				2B1087CC1DE4DC9200652D19 /* SearchViewController.h */,
-				2B1087CD1DE4DC9200652D19 /* SearchViewController.m */,
-				2B1087BD1DE4A62600652D19 /* PhotoModel.h */,
-				2B1087BE1DE4A62600652D19 /* PhotoModel.m */,
-				2B1087C31DE4C63000652D19 /* CustomCollectionViewCell.h */,
-				2B1087C41DE4C63000652D19 /* CustomCollectionViewCell.m */,
-				2B1087C91DE4DA8300652D19 /* BasicAnnotation.h */,
-				2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */,
-				2B1087D21DE517D600652D19 /* NetworkQuery.h */,
-				2B1087D31DE517D600652D19 /* NetworkQuery.m */,
-				2B1089761DE63F0C00652D19 /* NetworkRequest.h */,
-				2B1089771DE63F0C00652D19 /* NetworkRequest.m */,
-				2B10897C1DE64C1F00652D19 /* LocationManager.h */,
-				2B10897D1DE64C1F00652D19 /* LocationManager.m */,
+				2B4B31081DE8C03000A92DDE /* Controller */,
+				2B4B31071DE8C01D00A92DDE /* Model */,
 				2B1087931DE49C8F00652D19 /* Main.storyboard */,
 				2B1087961DE49C8F00652D19 /* Assets.xcassets */,
 				2B1087981DE49C8F00652D19 /* LaunchScreen.storyboard */,
 				2B10879B1DE49C8F00652D19 /* Info.plist */,
+				2B85BDA91DE8A28900F5F4C5 /* PhotoModel.xcdatamodeld */,
 				2B10878A1DE49C8F00652D19 /* Supporting Files */,
 			);
 			path = CatMap;
@@ -190,6 +175,40 @@
 				2B1087C11DE4B21800652D19 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B4B31071DE8C01D00A92DDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B1087BD1DE4A62600652D19 /* PhotoModel.h */,
+				2B1087BE1DE4A62600652D19 /* PhotoModel.m */,
+				2B1087D21DE517D600652D19 /* NetworkQuery.h */,
+				2B1087D31DE517D600652D19 /* NetworkQuery.m */,
+				2B1089761DE63F0C00652D19 /* NetworkRequest.h */,
+				2B1089771DE63F0C00652D19 /* NetworkRequest.m */,
+				2B10897C1DE64C1F00652D19 /* LocationManager.h */,
+				2B10897D1DE64C1F00652D19 /* LocationManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2B4B31081DE8C03000A92DDE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B10878D1DE49C8F00652D19 /* AppDelegate.h */,
+				2B10878E1DE49C8F00652D19 /* AppDelegate.m */,
+				2B1087901DE49C8F00652D19 /* ViewController.h */,
+				2B1087911DE49C8F00652D19 /* ViewController.m */,
+				2B1087C61DE4D19F00652D19 /* DetailViewController.h */,
+				2B1087C71DE4D19F00652D19 /* DetailViewController.m */,
+				2B1087CC1DE4DC9200652D19 /* SearchViewController.h */,
+				2B1087CD1DE4DC9200652D19 /* SearchViewController.m */,
+				2B1087C31DE4C63000652D19 /* CustomCollectionViewCell.h */,
+				2B1087C41DE4C63000652D19 /* CustomCollectionViewCell.m */,
+				2B1087C91DE4DA8300652D19 /* BasicAnnotation.h */,
+				2B1087CA1DE4DA8300652D19 /* BasicAnnotation.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +350,7 @@
 				2B10897E1DE64C1F00652D19 /* LocationManager.m in Sources */,
 				2B1087CB1DE4DA8300652D19 /* BasicAnnotation.m in Sources */,
 				2B10878C1DE49C8F00652D19 /* main.m in Sources */,
+				2B85BDAB1DE8A28900F5F4C5 /* PhotoModel.xcdatamodeld in Sources */,
 				2B1087C51DE4C63000652D19 /* CustomCollectionViewCell.m in Sources */,
 				2B1089781DE63F0C00652D19 /* NetworkRequest.m in Sources */,
 				2B1087CE1DE4DC9200652D19 /* SearchViewController.m in Sources */,
@@ -588,6 +608,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B85BDA91DE8A28900F5F4C5 /* PhotoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B85BDAA1DE8A28900F5F4C5 /* PhotoModel.xcdatamodel */,
+			);
+			currentVersion = 2B85BDAA1DE8A28900F5F4C5 /* PhotoModel.xcdatamodel */;
+			path = PhotoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2B10877F1DE49C8E00652D19 /* Project object */;
 }
